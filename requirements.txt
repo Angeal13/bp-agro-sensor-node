@@ -1,0 +1,24 @@
+# SoilMonitoringIoT/requirements.txt
+# Pi 3 Sensor Node — Python 3.9+
+
+# Core
+mysql-connector-python==8.1.0
+pyserial==3.5
+pandas==2.0.3
+requests==2.31.0
+
+# System monitoring
+psutil==5.9.5
+
+# Network discovery
+netifaces==0.11.0
+
+# Date utilities
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Numpy (pinned lightweight version for 1 GB RAM)
+numpy==1.24.3
+
+# OTA: HMAC verification uses stdlib only — no extra package needed
+# RPi.GPIO installed via apt (python3-rpi.gpio) — not in pip requirements

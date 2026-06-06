@@ -1,0 +1,26 @@
+[Unit]
+Description=BP Agro — Pi 3 Soil Sensor Node
+After=network.target
+Wants=network.target
+
+[Service]
+Type=notify
+User=pi
+WorkingDirectory=/home/pi/SoilMonitoringIoT
+EnvironmentFile=/home/pi/SoilMonitoringIoT/.env
+ExecStart=/home/pi/SoilMonitoringIoT/venv/bin/python3 -m src.MainController
+
+# FIX: watchdog — systemd restarts the service if no WATCHDOG ping in 120 s
+WatchdogSec=120
+Restart=always
+RestartSec=15
+StartLimitInterval=300
+StartLimitBurst=5
+
+# FIX: journald logging (no separate log file needed on Pi 3)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pi3-sensor
+
+[Install]
+WantedBy=multi-user.target
